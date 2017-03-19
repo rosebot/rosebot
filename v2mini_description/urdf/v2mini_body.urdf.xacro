@@ -31,7 +31,7 @@
     <visual>
       <origin xyz="0 0 ${base_offset_z}" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/base/base.stl" />
+        <mesh filename="package://v2mini_description/meshes/base/base.dae" />
       </geometry>
       <material name="white"/>
     </visual>
@@ -62,7 +62,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/torso/torso.stl" />
+        <mesh filename="package://v2mini_description/meshes/torso/torso.dae" />
       </geometry>
       <material name="white"/>
     </visual>
@@ -85,7 +85,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 ${pi/2*rotate}"/>
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/base/base_wheel.stl" />
+        <mesh filename="package://v2mini_description/meshes/base/base_wheel.dae" />
       </geometry>
       <material name="red"/>
     </visual>

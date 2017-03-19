@@ -13,14 +13,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/arm/arm_link1.stl" />
+        <mesh filename="package://v2mini_description/meshes/arm/arm_link1.dae" />
       </geometry>
       <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-         <mesh filename="package://v2mini_description/meshes/arm/arm_link1.stl" />
+         <mesh filename="package://v2mini_description/meshes/arm/arm_link1.dae" />
       </geometry>
     </collision>
     <inertial> 
@@ -36,14 +36,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 ${pi} 0" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/arm/arm_link2.stl" />
+        <mesh filename="package://v2mini_description/meshes/arm/arm_link2.dae" />
       </geometry>
       <material name="grey"/>
     </visual>
     <collision>
        <origin xyz="0 0 0" rpy="0 ${pi} 0"/>
        <geometry>
-            <mesh filename="package://v2mini_description/meshes/arm/arm_link2.stl" />
+            <mesh filename="package://v2mini_description/meshes/arm/arm_link2.dae" />
        </geometry>
     </collision>
    <inertial>
@@ -99,14 +99,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="${l_rpy}" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/arm/arm_link${num}.stl" />
+        <mesh filename="package://v2mini_description/meshes/arm/arm_link${num}.dae" />
       </geometry>
       <material name="${mat}"/>
     </visual>
     <collision>
         <origin xyz="0 0 0" rpy="${l_rpy}"/>
         <geometry>
-            <mesh filename="package://v2mini_description/meshes/arm/arm_link${num}.stl" />
+            <mesh filename="package://v2mini_description/meshes/arm/arm_link${num}.dae" />
         </geometry>
     </collision>
     <inertial>

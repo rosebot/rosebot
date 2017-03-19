@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="v2mini">
+
+  <!-- materials -->
+  <material name="white">
+    <color rgba="0.7 0.7 0.7 1"/>
+  </material>
+  <material name="blue">
+    <color rgba="0.3 0.3 0.9 1"/>
+  </material>
+  <material name="black">
+    <color rgba="0.2 0.2 0.2 1"/>
+  </material>
+  <material name="grey">
+    <color rgba="0.4 0.4 0.4 1"/>
+  </material>
+  <material name="yellow">
+    <color rgba="0.5 0.5 0.1 1"/>
+  </material>
+  <material name="red">
+    <color rgba="0.6 0.2 0.2 1"/>
+  </material>
+
+  <!-- v2mini body -->
+  <include filename="$(find v2mini_description)/urdf/v2mini_body.urdf.xacro" />
+
+  <!-- v2mini arm -->
+  <include filename="$(find v2mini_description)/urdf/v2mini_arm.urdf.xacro" />
+
+  <!-- v2mini head -->
+  <include filename="$(find v2mini_description)/urdf/v2mini_head.urdf.xacro" />
+
+  <!-- r200 sensor -->
+  <include filename="$(find v2mini_description)/urdf/sensors/r200.urdf.xacro" />
+
+  <!-- join the body with arm -->
+  <joint name="shoulder" type="fixed">
+    <parent link="torso_link"/>
+    <child link="arm_link1"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <!-- join the body with head -->
+  <joint name="neckpan" type="revolute">
+    <parent link="torso_link"/>
+    <child link="neck_link"/>
+    <axis xyz="0 0 1"/>
+    <origin xyz="0 0 0"/>
+    <limit effort="10" lower="-2.9" upper="2.9" velocity="10"/>
+  </joint>
+
+  <xacro:body/>
+  <xacro:arm/>
+  <xacro:head/>
+  <xacro:sensor_r200 parent="head_link"/>
+
+</robot>

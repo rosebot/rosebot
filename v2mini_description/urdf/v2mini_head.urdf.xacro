@@ -9,7 +9,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/head/neck.stl" />
+        <mesh filename="package://v2mini_description/meshes/head/neck.dae" />
       </geometry>
       <material name="black"/>
     </visual>
@@ -24,7 +24,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/head/head.stl" />
+        <mesh filename="package://v2mini_description/meshes/head/head.dae" />
       </geometry>
       <material name="yellow"/>
     </visual>
