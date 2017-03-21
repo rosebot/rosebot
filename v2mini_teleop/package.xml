@@ -15,11 +15,15 @@
     <build_depend>std_msgs</build_depend>
     <build_depend>sensor_msgs</build_depend>
     <build_depend>tf</build_depend>
+    <build_depend>geometry_msgs</build_depend>
+    <build_depend>roslib</build_depend>
 
     <!-- External deps -->
     <build_depend>libsdl2-dev</build_depend>
     <build_depend>libsdl2-image-dev</build_depend>
 
+    <run_depend>roslib</run_depend>
+    <run_depend>geometry_msgs</run_depend>
     <run_depend>roscpp</run_depend>
     <run_depend>rospy</run_depend>
     <run_depend>sensor_msgs</run_depend>
