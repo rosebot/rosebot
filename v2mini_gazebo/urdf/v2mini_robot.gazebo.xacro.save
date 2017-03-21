@@ -13,17 +13,7 @@
     </plugin>
   </gazebo>
 
-  <gazebo>
-    <plugin name="gazebo_imu" filename="libgazebo_ros_imu.so">
-      <alwaysOn>true</alwaysOn>
-      <bodyName>base_footprint</bodyName>
-      <topicName>imu</topicName>
-      <serviceName>imu_service</serviceName>
-      <gaussianNoise>0.0</gaussianNoise>
-      <updateRate>20.0</updateRate>
-    </plugin>
-  </gazebo>
-
+ 
 
   <!-- Instantiate transmissions -->
   <xacro:v2mini_arm_transmission prefix=""/>
