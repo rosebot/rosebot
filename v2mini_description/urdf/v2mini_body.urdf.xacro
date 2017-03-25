@@ -45,6 +45,8 @@
 
   </link>
 
+  <link name="base_footprint"/>
+
   <xacro:wheel prefix="front" reflect="-1" rotate="0" front_set="1"/>
   <xacro:wheel prefix="back" reflect="1" rotate="2" front_set="1"/>
   <xacro:wheel prefix="right" reflect="-1" rotate="-1" front_set="0"/>
