@@ -24,7 +24,11 @@
     </plugin>
   </gazebo>
 
-
+<!--   <gazebo>
+     <plugin name="gazebo_realsense" filename="librealsense_gazebo_plugin.so">
+     </plugin>
+   </gazebo>
+-->
   <!-- Instantiate transmissions -->
   <xacro:v2mini_arm_transmission prefix=""/>
 

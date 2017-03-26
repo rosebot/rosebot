@@ -2,9 +2,21 @@
   <param name="robot_description"
          command="$(find xacro)/xacro $(find v2mini_gazebo)/urdf/v2mini_robot.gazebo.xacro" />
 
+  <!-- RSP -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
   <!-- Load the yaml files for arm controller -->
   <rosparam command="load" file="$(find v2mini_gazebo)/config/v2mini_arm_controller.yaml" />
   <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" args="r_arm_controller --shutdown-timeout 3"/>
+
+  <!-- Spawn localization for the robot -->
+  <node name="v2mini_localization" type="ekf_localization_node" pkg="robot_localization">
+    <rosparam command="load" file="$(find v2mini_gazebo)/config/v2mini_sim_localization.yaml"/>
+  </node>
+  
+  <!-- Load JSP -->
+
+  <!-- Load Base Controller -->  
 
 
 </launch>
