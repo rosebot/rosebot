@@ -15,8 +15,11 @@
   </node>
   
   <!-- Load JSP -->
+  <rosparam command="load" file="$(find v2mini_gazebo)/config/v2mini_sim_joint_states.yaml"/>
 
   <!-- Load Base Controller -->  
+  <rosparam command="load" file="$(find v2mini_gazebo)/config/v2mini_sim_base_controller.yaml"/>
 
+  
 
 </launch>

@@ -47,7 +47,7 @@
 
   <link name="base_footprint"/>
 
-  <joint name="base_footprint_joint">
+  <joint name="base_footprint_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <parent link="base_link"/>
     <child link="base_footprint"/>
