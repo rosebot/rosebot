@@ -56,7 +56,7 @@
       <visual>
        <origin xyz="${-r200_cam_rgb_px + -r200_cam_px} ${-r200_cam_rgb_py + -r200_cam_py} ${-r200_cam_rgb_pz + -r200_cam_pz}" rpy="${M_PI/2} 0 ${M_PI/2}"/>
         <geometry>
-         <mesh filename="package://realsense_r200_description/meshes/realsense_r200.dae"/>
+         <mesh filename="package://v2mini_description/meshes/sensors/realsense_r200.dae"/>
         </geometry>
       </visual>
       <collision>
