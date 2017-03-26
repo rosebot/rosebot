@@ -52,6 +52,6 @@
   <xacro:body/>
   <xacro:arm/>
   <xacro:head/>
-  <xacro:sensor_r200 parent="head_link"/>
+  <xacro:realsense_r200 parent="head_link"/>
 
 </robot>

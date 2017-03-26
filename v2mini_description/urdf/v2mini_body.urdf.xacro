@@ -47,6 +47,12 @@
 
   <link name="base_footprint"/>
 
+  <joint name="base_footprint_joint">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent_link="base_link"/>
+    <child_link="base_footprint"/>
+  </joint>
+
   <xacro:wheel prefix="front" reflect="-1" rotate="0" front_set="1"/>
   <xacro:wheel prefix="back" reflect="1" rotate="2" front_set="1"/>
   <xacro:wheel prefix="right" reflect="-1" rotate="-1" front_set="0"/>
