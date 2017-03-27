@@ -5,7 +5,7 @@
 
    <transmission name="${prefix}torso_slide_trans">
       <type>transmission_interface/SimpleTransmission</type>
-      <joint name="${prefix}arm_joint1">
+      <joint name="${prefix}torso_slide">
         <hardwareInterface>PositionJointInterface</hardwareInterface>
       </joint>
       <actuator name="${prefix}torso_slide_motor">
