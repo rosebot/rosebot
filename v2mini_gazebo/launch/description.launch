@@ -9,6 +9,15 @@
   <rosparam command="load" file="$(find v2mini_gazebo)/config/v2mini_arm_controller.yaml" />
   <node name="arm_controller_spawner" pkg="controller_manager" type="spawner" args="r_arm_controller --shutdown-timeout 3"/>
 
+  <!-- Loads Torso controller for gazebo -->
+  <rosparam command="load" file="$(find v2mini_gazebo)/config/v2mini_torso_controller.yaml"/>
+  <node name="torso_controller_spawner" pkg="controller_manager" type="spawner" args="torso_controller --shutdown-timeout 3"/>
+
+  <!-- Loads Head controller for gazebo -->
+  <rosparam command="load" file="$(find v2mini_gazebo)/config/v2mini_head_controller.yaml"/>
+  <node name="head_controller_spawner" pkg="controller_manager" type="spawner" args="head_controller --shutdown-timeout 3"/>
+
+
   <!-- Spawn localization for the robot -->
   <node name="v2mini_localization" type="ekf_localization_node" pkg="robot_localization">
     <rosparam command="load" file="$(find v2mini_gazebo)/config/v2mini_sim_localization.yaml"/>

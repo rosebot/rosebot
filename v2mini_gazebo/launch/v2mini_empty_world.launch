@@ -14,5 +14,5 @@
   <include file="$(find v2mini_gazebo)/launch/description.launch"/>
 
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-	      args="-urdf -model v2mini -package_to_model -param robot_description -x 0 -y 0 -z 1.0" />
+	      args="-urdf -model v2mini -param robot_description -x 0 -y 0 -z 1.0" />
 </launch>
