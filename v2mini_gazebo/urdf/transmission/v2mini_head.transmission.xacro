@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="v2mini_arm_transmission" params="prefix">
+
+   <transmission name="${prefix}neck_tilt">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}neck_tilt">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}neck_tilt_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+    <transmission name="${prefix}neckpan_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="${prefix}neckpan">
+        <hardwareInterface>PositionJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="${prefix}neckpan_motor">
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+  </xacro:macro>
+
+</robot>
