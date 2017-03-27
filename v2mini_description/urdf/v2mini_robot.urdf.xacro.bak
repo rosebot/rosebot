@@ -49,6 +49,7 @@
     <origin xyz="0 0 0"/>
     <limit effort="10" lower="-2.9" upper="2.9" velocity="10"/>
   </joint>
+
   <xacro:body/>
   <xacro:arm/>
   <xacro:head/>
