@@ -4,12 +4,14 @@
   <!-- Includes -->
   <xacro:include filename="$(find v2mini_gazebo)/urdf/transmission/v2mini_arm.transmission.xacro"/>  
   <xacro:include filename="$(find v2mini_description)/urdf/v2mini_robot.urdf.xacro"/>
+  <xacro:include filename="$(find v2mini_gazebo)/urdf/transmission/v2mini_head.transmission.xacro"/>
+  <xacro:include filename="$(find v2mini_gazebo)/urdf/transmission/v2mini_torso.transmission.xacro"/>
 
   <!-- Add the gazebo plugins here -->
   <gazebo>
     <plugin name="ros_control" filename="libgazebo_ros_control.so">
-      <!--robotNamespace>/</robotNamespace-->
-      <!--robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType-->
+      <robotNamespace>/</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
     </plugin>
   </gazebo>
 
@@ -31,5 +33,7 @@
 -->
   <!-- Instantiate transmissions -->
   <xacro:v2mini_arm_transmission prefix=""/>
+  <xacro:v2mini_torso_transmission prefix=""/>
+  <xacro:v2mini_head_transmission prefix=""/>
 
 </robot>
