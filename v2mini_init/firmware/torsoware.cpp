@@ -6,6 +6,7 @@
 #include "AFMotor.h"
 #include "AFMotor.h"
 #include "geometry_msgs/Twist.h"
+#include "std_msgs/String.h"
 
 XL320 neckPan;
 
@@ -28,7 +29,7 @@ int servoID = 6;
 
 ros::NodeHandle nh;
 
-// How often to run the control loops
+// How often to run the control loops (ms)
 const int loopTime = 25;
 
 const int TOTAL_FACE_SERVOS = 5;
@@ -37,12 +38,13 @@ const int TOTAL_BUTTON_INS = 7;
 const int BUTTON_INS[] = {37,39,41,43,47,49,51};
 const int EYE_RGB_PINS[] = {45,44,46};
 const int EYE_RGB_SCALE[] = {120,120,120};
-const int EXPRESSION_SET[][6] =  {{100,90,80,90,80,4},     //neutral
+enum EMOTION {UNKNOWN, SAD, HAPPY, ANGRY, SURPRISED, CONFUSED};
+const int EXPRESSION_SET[][6] =  {{100,90,80,90,80,4},      //neutral
                                   {150,115,90,70,30,2},     //sad
                                   {20,90,80,90,160,4},      //happy
                                   {80,65,80,115,100,0},     //mad
-                                  {20,85,150,95,160,6},    //interested
-                                  {20,105,180,75,90,5}};   //uncertain
+                                  {20,85,150,95,160,6},     //interested
+                                  {20,105,180,75,90,5}};    //uncertain
 
 const int LINACT_APIN[] = {10,0,12,11};
 const int LINACT_MAX[] = {800,800,800,800};
@@ -76,7 +78,6 @@ int torso_input = 0;
 float torso_current = TORSO_AVGH;
 float torso_inc = loopTime*TORSO_VEL;
 unsigned long prev_torso_time;
-
 
 // linact vars
 AF_DCMotor wrist_motor(1);
@@ -118,6 +119,8 @@ int face_state = 0;
 int face_input = 0;
 int expression = 0;
 Servo face_servos[TOTAL_FACE_SERVOS];
+int human_emo = UNKNOWN;
+int dt_face = 0;
 
 void motion_cb(const geometry_msgs::Twist& motion_cmds)
 {
@@ -130,9 +133,35 @@ void motion_cb(const geometry_msgs::Twist& motion_cmds)
   linact_inputs[GRIPPER_R] = linact_inputs[GRIPPER_L];
 }
 
+void emotion_cb(const std_msgs::String& emo_msg)
+{
+  if (strcmp(emo_msg.data, "HAPPY") == 0) {
+    human_emo = HAPPY;
+  }
+  else if (strcmp(emo_msg.data, "SAD") == 0) {
+    human_emo = SAD;
+  }
+  else if (strcmp(emo_msg.data, "CONFUSED") == 0) {
+    human_emo = CONFUSED;
+  }
+  else if (strcmp(emo_msg.data, "ANGRY") == 0) {
+    human_emo = ANGRY;
+  }
+  else if (strcmp(emo_msg.data, "SURPRISED") == 0) {
+    human_emo = SURPRISED;
+  }
+  else {
+    human_emo = UNKNOWN;
+  }
+}
+
 // Subscribe to ROS topic "/torso_cmds"
 ros::Subscriber<geometry_msgs::Twist> sub_motion(
 "torso_cmds", &motion_cb);
+
+// Subscribe to ROS topic "/human_emotion"
+ros::Subscriber<std_msgs::String> sub_emotion(
+"human_emotion", &emotion_cb);
 
 // geometry_msgs::Twist debug_msg;
 // ros::Publisher torso_debugger("torso_debugger", &debug_msg);
@@ -212,7 +241,6 @@ void setTorsoServo(float increm)
   // increment up or down
   torso_current += increm;
 
-
   // keep value in range for any increment
   if (torso_current > TORSO_MAXH)
   {
@@ -268,12 +296,12 @@ void setEyeColor(int color)
 
 void setFacialExpression(int exp)
 {
-    setEyeColor(EXPRESSION_SET[exp][5]);
-    face_servos[1].write(EXPRESSION_SET[exp][1]);
-    face_servos[3].write(EXPRESSION_SET[exp][3]);
-    face_servos[0].write(EXPRESSION_SET[exp][0]);
-    face_servos[2].write(EXPRESSION_SET[exp][2]);
-    face_servos[4].write(EXPRESSION_SET[exp][4]);
+  setEyeColor(EXPRESSION_SET[exp][5]);
+  face_servos[1].write(EXPRESSION_SET[exp][1]);
+  face_servos[3].write(EXPRESSION_SET[exp][3]);
+  face_servos[0].write(EXPRESSION_SET[exp][0]);
+  face_servos[2].write(EXPRESSION_SET[exp][2]);
+  face_servos[4].write(EXPRESSION_SET[exp][4]);
 }
 
 void toggleFace()
@@ -410,7 +438,27 @@ void loop()
   {
       prev_time = cur_time;
       // readButtons();
-      toggleFace();
+
+      // mirror or teleop face
+      if (human_emo != UNKNOWN) {
+        // mirror human expression
+        setFacialExpression(human_emo);
+        dt_face = cur_time;
+      }
+      else {
+        if (dt_face > 0) {
+          // face previously mirrored
+          if (dt_face - cur_time > 20000) {
+            // set inactive face to neutral after 20s
+            setFacialExpression(UNKNOWN);
+            dt_face = 0;
+          }
+        }
+        else {
+          // check for teleop face cmds
+          toggleFace();
+        }
+      }
       moveTorso();
       panHead();
 
@@ -418,7 +466,6 @@ void loop()
       linAct(1);
       linAct(2);
       linAct(3);
-
   }
 
   nh.spinOnce();
