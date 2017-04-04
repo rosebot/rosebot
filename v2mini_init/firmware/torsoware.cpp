@@ -126,7 +126,7 @@ void motion_cb(const geometry_msgs::Twist& motion_cmds)
 {
   face_input = motion_cmds.linear.x;
   torso_input = motion_cmds.linear.y;
-  linact_inputs[HEADTILT] = motion_cmds.linear.z;
+  prev_linact_pos[HEADTILT] = motion_cmds.linear.z;
   pan_input = motion_cmds.angular.x;
   linact_inputs[WRIST] = motion_cmds.angular.y;
   linact_inputs[GRIPPER_L] = motion_cmds.angular.z;
