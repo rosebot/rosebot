@@ -424,6 +424,7 @@ void setup()
  // init ros stuff
  nh.initNode();
  nh.subscribe(sub_motion);
+ nh.subscribe(sub_emotion);
 
  // nh.advertise(torso_debugger); // comment out when not debugging
 

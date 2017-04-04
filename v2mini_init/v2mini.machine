@@ -1,6 +1,6 @@
 <launch>
 
-   <machine name="remote" address="$(env ROS_IP)" user="$(env USER)" env-loader="/home/$(env USER)/v2mini_ws/devel/env.sh"/>
+   <machine name="remote" address="$(env ROS_IP)" user="$(env USER)" env-loader="/home/$(env USER)/.v2mini_ws1/devel/env.sh"/>
    <machine name="v2-mini" address="$(optenv V2MINI_ROS_IP 127.0.0.1)" user="v2-mini" default="true" />
 
 </launch>
