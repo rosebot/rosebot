@@ -25,7 +25,7 @@
   
   <!-- Load JSP -->
   <rosparam command="load" file="$(find v2mini_gazebo)/config/v2mini_sim_joint_states.yaml"/>
-  <node name="joint_state_spawner" pkg="controller_manager" type="spawner" args="joint_state_controller --shutdown-timeout 3"/>
+  <node name="joint_state_spawner" pkg="controller_manager" type="spawner" args="joint_state_publisher --shutdown-timeout 3"/>
   
 
 </launch>

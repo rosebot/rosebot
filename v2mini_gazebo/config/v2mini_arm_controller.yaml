@@ -9,7 +9,7 @@ r_arm_controller:
      - arm_joint5
   constraints:
       goal_time: 0.6
-      stopped_velocity_tolerance: 0.5
+      stopped_velocity_tolerance: 0.05
       arm_joint1: {trajectory: 0.1, goal: 0.1}
       arm_joint2: {trajectory: 0.1, goal: 0.1}
       arm_joint3: {trajectory: 0.1, goal: 0.1}
