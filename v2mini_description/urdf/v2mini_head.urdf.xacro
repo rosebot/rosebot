@@ -12,12 +12,6 @@
         <mesh filename="package://v2mini_description/meshes/head/neck.dae" />
       </geometry>
     </visual>
-      <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://v2mini_description/meshes/head/neck.dae"/>
-      </geometry>
-      </collision>
      <inertial>
        <origin xyz="0 0 0" rpy="0 0 0"/>
        <mass value="1"/>
@@ -32,12 +26,6 @@
         <mesh filename="package://v2mini_description/meshes/head/head.dae" />
        </geometry>
     </visual>
-      <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-        <mesh filename="package://v2mini_description/meshes/head/head.dae"/>
-      </geometry>
-      </collision>
      <inertial>
        <origin xyz="0 0 0" rpy="0 0 0"/>
        <mass value="1"/>
