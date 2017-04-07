@@ -1,6 +1,5 @@
 <launch>
-  <param name="robot_description"
-         command="$(find xacro)/xacro $(find v2mini_gazebo)/urdf/v2mini_robot.gazebo.xacro" />
+  <param name="robot_description" command="$(find xacro)/xacro.py $(find v2mini_gazebo)/urdf/v2mini_robot.gazebo.xacro" />
 
   <!-- RSP -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />

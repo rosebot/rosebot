@@ -27,30 +27,26 @@
       <inertia ixx="100" ixy="0" ixz="0" iyy="100" iyz="0" izz="100" />
       <origin/>
     </inertial>
-
     <visual>
       <origin xyz="0 0 ${base_offset_z}" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://v2mini_description/meshes/base/base.dae" />
       </geometry>
-      <material name="white"/>
     </visual>
-
     <collision>
       <origin xyz="0 0 ${base_collision_height/2}" rpy="0 0 0" />
       <geometry>
         <cylinder length="${base_collision_height}" radius="${base_collision_radius}"/>
       </geometry>
     </collision>
-
   </link>
 
   <link name="base_footprint"/>
 
   <joint name="base_footprint_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0"/>
-    <parent link="base_link"/>
-    <child link="base_footprint"/>
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
   </joint>
 
   <xacro:wheel prefix="front" reflect="-1" rotate="0" front_set="1"/>
@@ -72,8 +68,13 @@
       <geometry>
         <mesh filename="package://v2mini_description/meshes/torso/torso.dae" />
       </geometry>
-      <material name="white"/>
     </visual>
+    <collision>
+       <origin xyz="0 0 0" rpy="0 0 0"/>
+       <geometry>
+           <mesh filename="package://v2mini_description/meshes/torso/torso.dae" />
+       </geometry>
+    </collision>
   </link>
 
   <joint name="torso_slide" type="prismatic">
@@ -95,14 +96,18 @@
       <geometry>
         <mesh filename="package://v2mini_description/meshes/base/base_wheel.dae" />
       </geometry>
-      <material name="red"/>
     </visual>
      <inertial>
        <origin xyz="0 0 0" rpy="0 0 0"/>
        <mass value="1"/>
        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
-
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0">
+      <geometry>
+        <mesh filename="package://v2mini_description/meshes/base/base_wheel.dae"/>
+      </geometry>
+    </collision>
   </link>
 
   <joint name="${prefix}_axel" type="continuous">

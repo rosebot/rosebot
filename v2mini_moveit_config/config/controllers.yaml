@@ -9,3 +9,16 @@
        - arm_joint3
        - arm_joint4
        - arm_joint5
+   - name: torso_controller
+     action_ns: follow_joint_trajectory
+     type: FollowJointTrajectory
+     default: true
+     joints:
+       - torso_slide
+   - name: head_controller
+     action_ns: follow_joint_trajectory
+     type: FollowJointTrajectory
+     default: true
+     joints:
+       - neck_tilt
+       - neckpan

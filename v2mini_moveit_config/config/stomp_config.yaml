@@ -22,8 +22,8 @@ stomp/right_arm:
         longest_valid_joint_move: 0.05
     noisy_filters:
       - class: stomp_moveit/JointLimits
-        lock_start: True
-        lock_goal: True
+        lock_start: False
+        lock_goal: False
       - class: stomp_moveit/MultiTrajectoryVisualization
         line_width: 0.02
         rgb: [0, 255, 0]
