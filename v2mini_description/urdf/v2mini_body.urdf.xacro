@@ -13,7 +13,7 @@
 <xacro:property name="wheel_offset_radial" value="0.1405" />
 
 <!-- torso properties -->
-<xacro:property name="torso_offset_z" value="0.175" />
+<xacro:property name="torso_offset_z" value="0.425" />
 <xacro:property name="torso_width" value="0.2373" />
 
 <xacro:macro name="body">
@@ -64,7 +64,7 @@
       <origin/>
     </inertial>
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 ${torso_offset_z}" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://v2mini_description/meshes/torso/torso.dae" />
       </geometry>
@@ -74,7 +74,7 @@
   <joint name="torso_slide" type="prismatic">
     <parent link="base_link"/>
     <child link="torso_link"/>
-    <origin xyz="0 0 ${base_offset_z}"/>
+    <origin xyz="0 0 0"/>
     <axis xyz="0 0 1"/>
     <limit effort="10" lower="-0.09" upper="0" velocity="0.5"/>
   </joint>

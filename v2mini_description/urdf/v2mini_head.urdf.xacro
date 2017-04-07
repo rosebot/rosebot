@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="v2mini">
 
-<xacro:property name="head_offset_z" value="0.495215" />
+<xacro:property name="head_offset_z" value="0.427" />
 
 <xacro:macro name="head">
 
   <link name="neck_link">
     <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
+      <origin xyz="0 0 0.42" rpy="0 0 0" />
       <geometry>
         <mesh filename="package://v2mini_description/meshes/head/neck.dae" />
       </geometry>
@@ -37,7 +37,7 @@
     <parent link="neck_link"/>
     <child link="head_link"/>
     <axis xyz="1 0 0"/>
-    <origin xyz="0 0 ${head_offset_z}"/>
+    <origin xyz="0 0 ${head_offset_z}" rpy="0 0 3.14"/>
     <limit effort="1000.0" lower="0.3" upper="-0.5" velocity="0.1"/>
   </joint>
 

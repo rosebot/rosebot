@@ -1,5 +1,6 @@
 <launch>
   <arg name="debug" default="false" />
+  <arg name="pipeline" default="stomp_moveit"/>
 
   <!-- Remap follow_joint_trajectory -->
   <remap from="follow_joint_trajectory" to="r_arm_controller/follow_joint_trajectory"/>
@@ -8,6 +9,7 @@
   <include file="$(find v2mini_moveit_config)/launch/move_group.launch">
     <arg name="debug" default="$(arg debug)" />
     <arg name="publish_monitored_planning_scene" value="true" />
+    <arg name="pipeline" value="$(arg pipeline)"/>
   </include>
 
 </launch>

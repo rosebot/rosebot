@@ -20,9 +20,11 @@
   <arg name="jiggle_fraction" default="0.05" />
   <arg name="publish_monitored_planning_scene" default="true"/>
 
+  <arg name="pipeline" default="stomp_moveit"/>
+
   <!-- Planning Functionality -->
   <include ns="move_group" file="$(find v2mini_moveit_config)/launch/planning_pipeline.launch.xml">
-    <arg name="pipeline" value="stomp_moveit" />
+    <arg name="pipeline" value="$(arg pipeline)" />
   </include>
 
   <!-- Trajectory Execution Functionality -->

@@ -7,21 +7,17 @@
 <xacro:property name="base_offsety" value="-0.002" />
 <xacro:property name="base_offsetz" value="0.407507" />
 
+
+
 <xacro:macro name="arm">
 
   <link name="arm_link1">
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/arm/arm_link1.dae" />
+        <mesh filename="package://v2mini_description/meshes/arm/arm_link1.stl" />
       </geometry>
     </visual>
-    <collision>
-      <origin xyz="0 0 0" rpy="0 0 0"/>
-      <geometry>
-         <mesh filename="package://v2mini_description/meshes/arm/arm_link1.dae" />
-      </geometry>
-    </collision>
     <inertial> 
        <origin xyz="0 0 0" rpy="0 0 0"/>
        <mass value="0.01"/> 
@@ -35,21 +31,14 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 ${pi} 0" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/arm/arm_link2.dae" />
+        <mesh filename="package://v2mini_description/meshes/arm/arm_link2.stl" />
       </geometry>
     </visual>
-    <collision>
-       <origin xyz="0 0 0" rpy="0 ${pi} 0"/>
-       <geometry>
-            <mesh filename="package://v2mini_description/meshes/arm/arm_link2.dae" />
-       </geometry>
-    </collision>
    <inertial>
        <origin xyz="0 0 0" rpy="0 0 0"/>
        <mass value="0.01"/>
        <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
     </inertial>
-
   </link>
 
   <joint name="arm_joint1" type="continuous">
@@ -97,15 +86,9 @@
     <visual>
       <origin xyz="0 0 0" rpy="${l_rpy}" />
       <geometry>
-        <mesh filename="package://v2mini_description/meshes/arm/arm_link${num}.dae" />
+        <mesh filename="package://v2mini_description/meshes/arm/arm_link${num}.stl" />
       </geometry>
     </visual>
-    <collision>
-        <origin xyz="0 0 0" rpy="${l_rpy}"/>
-        <geometry>
-            <mesh filename="package://v2mini_description/meshes/arm/arm_link${num}.dae" />
-        </geometry>
-    </collision>
     <inertial>
        <origin xyz="0 0 0" rpy="0 0 0"/>
        <mass value="0.01"/>
@@ -113,7 +96,7 @@
     </inertial>
   </link>
 
-  <joint name="arm_joint${par_num}" type="continuous">
+  <joint name="arm_joint${par_num}" type="revolute">
     <parent link="arm_link${par_num}"/>
     <child link="arm_link${num}"/>
     <origin xyz="${offset}" rpy="${j_rpy}"/>
