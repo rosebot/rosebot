@@ -205,11 +205,9 @@ void linAct(int actuator_num)
 
   PIDSet[actuator_num] = target_pos;
   PIDIn[actuator_num] = linact_sum[actuator_num]/numAvg;
-  if ( abs(PIDSet[actuator_num]-PIDIn[actuator_num]) < 5 || (linact_stall_counts[actuator_num] > 40 && linact_inputs[actuator_num] == 0))
+  if ((actuator_num != HEADTILT) && (abs(PIDSet[actuator_num]-PIDIn[actuator_num]) < 5 || (linact_stall_counts[actuator_num] > 40 && linact_inputs[actuator_num] == 0)))
   {
-    if(actuator_num != HEADTILT){
         linacts[actuator_num].run(RELEASE);
-    }
   }
   else
   {
