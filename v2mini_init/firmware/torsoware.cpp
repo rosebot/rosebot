@@ -9,6 +9,9 @@
 #include "std_msgs/String.h"
 
 XL320 neckPan;
+const int neck_set_interval = 10000; //How often should the speed be set for the neck pan
+int prev_neck_time = 0;
+int neckPanSpeed = 35;
 
 // Set some variables for incrementing position & LED colour
 char RGB[] = "rgbypcwo";
@@ -367,7 +370,7 @@ void setup()
   // init neck dynamixel
   Serial1.begin(57600);
   neckPan.begin(Serial1); // Hand in the serial object you're using
-  neckPan.setJointSpeed(servoID, 100); // set head pan speed
+  neckPan.setJointSpeed(servoID, neckPanSpeed); // set head pan speed
   neckPan.moveJoint(servoID, PAN_CENTER); // center head position
   // Uncommemt if using the usb2dynamixel for neck panning
   //  pinMode(18, INPUT);
@@ -467,6 +470,12 @@ void loop()
       linAct(1);
       linAct(2);
       linAct(3);
+  }
+
+  if((cur_time - prev_neck_time) > neck_set_interval)
+  {
+    prev_neck_time = cur_time;
+    neckPan.setJointSpeed(servoID, neckPanSpeed);
   }
 
   nh.spinOnce();
